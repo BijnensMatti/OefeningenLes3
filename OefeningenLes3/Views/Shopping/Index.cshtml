@@ -1,0 +1,16 @@
+﻿@model IEnumerable<OefeningenLes3.Entities.ShopItem>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+<a asp-action="create">Create New</a>
+<ul>
+    @foreach(var item in Model){
+
+    <li>
+        @Html.DisplayFor(modelItem => item.Name) - @Html.DisplayFor(modelItem => item.Amount)
+    </li>
+
+    }
+</ul>

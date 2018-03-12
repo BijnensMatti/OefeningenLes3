@@ -21,7 +21,9 @@ namespace OefeningenLes3
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
+            services.AddMvc().AddSessionStateTempDataProvider();
+            services.AddMemoryCache();
+            services.AddSession();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -38,13 +40,14 @@ namespace OefeningenLes3
             }
 
             app.UseStaticFiles();
-
-            app.UseMvc(routes =>
+            app.UseSession();
+            app.UseMvcWithDefaultRoute();
+            /*app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
-            });
+            });*/
         }
     }
 }
